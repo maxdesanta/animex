@@ -13,6 +13,13 @@ class DeviceLimitService
         $deviceInfo = $this->getDeviceInfo();
         $existingDevice = $this->findExistingDevice($user, $deviceInfo);
 
+        if($existingDevice){
+            $existingDevice->update(['last_active' => now()]);
+            session(['device_id' => $existingDevice->device_id]);
+
+            return $existingDevice;
+        }
+
         if($this->hasReachedDeviceLimit($user)){
             return false;
         } 
@@ -21,6 +28,11 @@ class DeviceLimitService
         session(['device_id' => $device->device_id]);
 
         return $device;
+    }
+
+    public function logoutDevice($deviceId){
+        UserDevice::where('device_id', $deviceId)->delete();
+        session()->forget('device_id');
     }
 
     private function getDeviceInfo(){
@@ -67,10 +79,5 @@ class DeviceLimitService
 
     private function generateDeviceId(){
         return Str::random(32);
-    }
-
-    public function logoutDevice($deviceId){
-        UserDevice::where('device_id', $deviceId)->delete();
-        session()->forget('device_id');
     }
 }

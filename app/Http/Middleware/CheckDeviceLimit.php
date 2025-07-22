@@ -53,6 +53,7 @@ class CheckDeviceLimit
             
             return $next($request);
         }
-
+        
+        return $next($request);
     }
 }

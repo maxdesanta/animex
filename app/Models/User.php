@@ -64,8 +64,9 @@ class User extends Authenticatable
         return $this->hasMany(UserDevice::class);
     }
 
-    public function geturrentPlan(){
-        $activeMembership = $this->memberships()->where('active', true)
+    public function getCurrentPlan(){
+        $activeMembership = $this->memberships()
+        ->where('active', true)
         ->where('start_date', '<=', now())
         ->where('end_date', '>=', now())
         ->first();
