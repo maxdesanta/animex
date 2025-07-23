@@ -11,7 +11,7 @@
             <ul>
                 @foreach($chunk as $category)
                     <li>
-                        <a href="#" class="block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-gray-100">{{ $category->title }}</a>
+                        <a href="{{ route('categories.show', $category->slug) }}" class="block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-gray-100">{{ $category->title }}</a>
                     </li>
                 @endforeach
             </ul>
