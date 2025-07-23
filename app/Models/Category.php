@@ -9,4 +9,9 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = ['title', 'slug'];
+
+    public function movies()
+    {
+        return $this->belongsToMany(Movies::class);
+    }
 }

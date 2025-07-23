@@ -3,33 +3,24 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
         <button id="menu-btn" class="md:hidden text-gray-500 text-2xl">&#9776;</button>
-        <h1 class="text-xl font-bold text-indigo-500">Animex</h1>
+        <a href="{{ route('home')}}" target="_blank" rel="noopener noreferrer">
+            <h1 class="text-xl font-bold text-indigo-500">
+                Animex
+            </h1>
+        </a>
         </div>
         <nav class="hidden md:flex space-x-6 text-sm">
             <!-- New Navigation Elements -->
-            <div class="relative group">
-                <button class="text-sm hover:text-indigo-400 flex items-center gap-1">
-                    Category
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div class="absolute left-0 mt-2 w-40 bg-gray-100 border border-gray-700 rounded shadow-lg hidden group-hover:block z-50">
-                    <a href="#" class="block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-gray-100">Action</a>
-                    <a href="#" class="block px-4 py-2 text-sm hover:bg-indigo-500 hover:text-gray-100">Adventure</a>
-                </div>
-            </div>
-    
+            <x-category-nav />
             <!-- Search Input -->
             <div class="relative">
-            <input type="text" placeholder="Search..."
-                    class="bg-gray-200 text-gray-800 text-sm rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500" />
-            <svg class="absolute right-2 top-1.5 w-4 h-4 text-indigo-500" fill="none" stroke="currentColor"
-                    stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/>
-            </svg>
+                <input type="text" placeholder="Search..."
+                        class="bg-gray-200 text-gray-800 text-sm rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <svg class="absolute right-2 top-1.5 w-4 h-4 text-indigo-500" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/>
+                </svg>
             </div>
     
             <!-- Notification Icon -->

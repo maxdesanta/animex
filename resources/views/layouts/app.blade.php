@@ -16,7 +16,9 @@
 <body class="bg-white text-gray-900 font-sans">
     <!-- Navbar -->
     <x-navbar />
-    @yield('content')
+    <section class="px-6 py-12 max-w-7xl mx-auto">
+        @yield('content')
+    </section>
     <!-- Sidebar Toggle Script -->
     <script>
         document.getElementById("menu-btn").onclick = () => {
