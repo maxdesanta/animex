@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class RatingSeeder extends Seeder
 {
@@ -15,6 +16,8 @@ class RatingSeeder extends Seeder
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
+        
         $movies = Movies::all();
         $users = User::all();
 
@@ -26,10 +29,13 @@ class RatingSeeder extends Seeder
                     'user_id' => $user->id,
                     'movie_id' => $movie->id,
                     'rating' => fake()->randomFloat(1, 0, 10),
+                    'created_at' => now(),
+                    'updated_at' => now(),
                 ];
             }
         }
 
         DB::table('ratings')->insert($ratings);
+        Schema::enableForeignKeyConstraints();
     }
 }

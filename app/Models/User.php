@@ -57,7 +57,7 @@ class User extends Authenticatable
     }
 
     public function hasMembership(): bool {
-        return $this->memberships()->where('active', true)->where('end_date', now())->exists();
+        return $this->memberships()->where('active', true)->where('end_date', '>' ,now())->exists();
     }
 
     public function devices(){
@@ -75,6 +75,11 @@ class User extends Authenticatable
             return null;
         }
 
-        return $activeMembership->plan;
+        return Plan::find($activeMembership->plan_id);
+    }
+
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class, 'memberships', 'user_id', 'plan_id');
     }
 }

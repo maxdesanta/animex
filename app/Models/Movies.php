@@ -31,17 +31,19 @@ class Movies extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_movie', 'movie_id', 'category_id');
     }
 
     public function ratings()
     {
-        return $this->hasMany(Rating::class);
+        return $this->hasMany(Rating::class, 'movie_id');
     }
 
     // menghitung rata - rata rating
-    public function getAverageRating():float {
-        return $this->ratings()->avg('rating');
+    public function getAverageRatingAttribute(): mixed
+    {
+        $avg = $this->ratings()->avg('rating');
+        return $avg;
     }
 
     // get streaming URL

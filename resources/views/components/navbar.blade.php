@@ -13,15 +13,17 @@
             <!-- New Navigation Elements -->
             <x-category-nav />
             <!-- Search Input -->
-            <div class="relative">
-                <input type="text" placeholder="Search..."
-                        class="bg-gray-200 text-gray-800 text-sm rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-green-500" />
-                <svg class="absolute right-2 top-1.5 w-4 h-4 text-indigo-500" fill="none" stroke="currentColor"
-                        stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/>
-                </svg>
-            </div>
+            <form action="{{ route('movies.search') }}" method="GET" role="search" class="relative">
+                <input type="search" name="search" value="{{ request('search') }}" placeholder="Search..."
+                        class="bg-gray-200 text-gray-800 text-sm rounded px-3 py-1 focus:outline-none focus:ring-2" />
+                <button type="submit">
+                    <svg class="absolute right-2 top-1.5 w-4 h-4 text-indigo-500" fill="none" stroke="currentColor"
+                    stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/>
+                    </svg>
+                </button>
+            </form>
     
             <!-- Notification Icon -->
             <button class="relative text-gray-300 hover:text-indigo-500">
@@ -34,16 +36,19 @@
     
             <!-- User Dropdown -->
             <div class="relative group">
-            <button class="flex items-center text-gray-300 hover:text-indigo-500">
+            <button class="flex items-center text-gray-300 hover:text-indigo-500 p-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
                         d="M5.121 17.804A7.962 7.962 0 0012 20a7.962 7.962 0 006.879-2.196M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
             </button>
-            <div class="absolute right-0 mt-2 w-40 bg-gray-100 border border-gray-700 rounded shadow-lg hidden group-hover:block z-50">
+            <div class="absolute right-0 top-full w-40 bg-gray-100 border border-gray-700 rounded shadow-lg hidden group-hover:block z-50">
                 <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-indigo-500">User Settings</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-800 hover:bg-indigo-500">Logout</a>
+                <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none">
+                    {{ csrf_field() }}
+                </form>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="block px-4 py-2 text-sm text-gray-800 hover:bg-indigo-500">Logout</a>
             </div>
             </div>
         </nav>
